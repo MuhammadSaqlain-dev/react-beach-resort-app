@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { createContext, useState } from "react";
+import { createContext } from "react";
 import { useParams } from "react-router-dom";
 
 import Client from "./Contentful";
@@ -33,7 +33,7 @@ export class RoomProvider extends Component {
       });
 
       let rooms = this.formatData(response.items);
-      let featuredRooms = rooms.filter((room) => room.featured == true);
+      let featuredRooms = rooms.filter((room) => room.featured === true);
       const maxPrice = Math.max(...rooms.map((room) => room.price));
       const maxSize = Math.max(...rooms.map((room) => room.size));
 
@@ -68,7 +68,7 @@ export class RoomProvider extends Component {
 
   getRoom = (slug) => {
     return this.state.rooms.find((room) => {
-      return slug == room.slug;
+      return slug === room.slug;
     });
   };
 
@@ -76,7 +76,7 @@ export class RoomProvider extends Component {
     const target = e.target;
 
     const name = target.name;
-    let value = target.type == "checkbox" ? target.checked : target.value;
+    let value = target.type === "checkbox" ? target.checked : target.value;
 
     this.setState(
       {
@@ -117,7 +117,7 @@ export class RoomProvider extends Component {
     );
     // filter by breakfast
     if (breakfast) {
-      tempRooms = tempRooms.filter((room) => room.breakfast == true);
+      tempRooms = tempRooms.filter((room) => room.breakfast === true);
     }
     // filter by pets
     if (pets) {
